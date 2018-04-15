@@ -11,11 +11,15 @@ function init(hypos) {
 // 모든 가설을 돌며 mix의 dataName에 해당하는 값을 곱해 업데이트한다
 function update(dict, mix, dataName) {
 
-    Object.keys(dict).forEach((key) => {
-        dict[key] = dict[key] * mix[key][dataName];
+    Object.keys(dict).forEach((hypo) => {
+        dict[hypo] = dict[hypo] * likelihood(mix, hypo, dataName);
     });
 
     return normalize(dict);
+}
+
+function likelihood(mix, hypo, dataName) {
+    return mix[hypo][dataName];
 }
 
 // 모든 가설의 확률의 비율을 유지하며, 총합이 1이 되도록 정규화한다
