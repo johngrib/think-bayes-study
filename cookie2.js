@@ -1,6 +1,6 @@
 // hypos: 가설의 배열
 // 가설의 배열을 돌며 같은 경우의 수 1을 부여한다
-function Cookie(hypos) {
+function init(hypos) {
     const dict = {};
     hypos.forEach((h) => {
         dict[h] = 1;
@@ -43,7 +43,7 @@ function main() {
     };
 
     const hypos = ['Bowl1', 'Bowl2'];
-    const pmf = Cookie(hypos);
+    const pmf = init(hypos);
     const result = update(pmf, mix, 'vanilla');
     console.log(result);
 }
