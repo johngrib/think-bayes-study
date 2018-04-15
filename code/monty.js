@@ -21,12 +21,12 @@ function update(p, dataName) {
     return normalize(p);
 }
 
-// p(D | H_dataName) 를 계산한다
+// p(D | H_dataName)
 function likelihood(dict, hypo, dataName) {
     if (hypo == dataName) {
         return 0;
     }
-    // 자동차가 문 A 뒤에 있을 경우, 사회자가 문 B, C를 열어줌
+    // p(D | H_a)
     if (hypo == 'A') {
         return 1/2;
     }
