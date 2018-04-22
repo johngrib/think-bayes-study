@@ -55,7 +55,54 @@ function main(max) {
         suite = update(suite, coin);
     });
 
-    console.log(suite);
+    Object.keys(suite).forEach((key) => {
+        console.log(key + ',' + suite[key]);
+    });
+
+    var max = Object.keys(suite).sort((a, b) => {
+        if (suite[a] > suite[b]) {
+            return -1;
+        }
+        if (suite[a] < suite[b]) {
+            return 1;
+        }
+        return 0
+    })[0];
+    console.log('max n : ' + max)
+
+    let mean = 0;
+    Object.keys(suite).forEach((key) => {
+        mean += key * suite[key];
+    });
+    console.log('mean : ' + mean);
+
+
+    const keys = Object.keys(suite);
+
+    let p5 = 0;
+    let p5total = 0;
+    for(let i = 0; i < keys.length; i++) {
+        const val = keys[i];
+        const prob = suite[val];
+        p5total += prob;
+        if (p5total >= 0.05) {
+            p5 = val;
+            break;
+        }
+    }
+
+    let p95 = 0;
+    let p95total = 0;
+    for(let i = 0; i < keys.length; i++) {
+        const val = keys[i];
+        const prob = suite[val];
+        p95total += prob;
+        if (p95total >= 0.95) {
+            p95 = val;
+            break;
+        }
+    }
+    console.log({ '5%': p5, '95%': p95});
 }
 
 main(101)
